@@ -1,6 +1,7 @@
 package com.jason.wy.demoweb;
 
-import com.jason.wy.demobiz.DemoBizService;
+
+import com.jason.wy.demoservice.TestService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,12 +15,11 @@ import javax.annotation.Resource;
 @RestController
 public class DemoWebController {
 
-
     @Resource
-    DemoBizService demoBizService;
+    private TestService testService;
 
     @RequestMapping("test")
-    public String nameD() {
-        return demoBizService.name();
+    public String test() {
+        return "controller" + testService.getService();
     }
 }
