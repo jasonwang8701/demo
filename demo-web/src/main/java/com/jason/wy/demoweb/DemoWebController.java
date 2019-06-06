@@ -1,6 +1,7 @@
 package com.jason.wy.demoweb;
 
 
+import com.jason.wy.democommon.utils.RedisUtil;
 import com.jason.wy.demoservice.TestService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +19,18 @@ public class DemoWebController {
     @Resource
     private TestService testService;
 
+
+    @Resource
+    private RedisUtil redisUtil;
+
     @RequestMapping("test")
     public String test() {
-        return "controller" + testService.getService();
+        String key = "testRed22is1";
+        String value = "controller" + testService.getService() ;
+        if (!redisUtil.hasKey(key)) {
+            redisUtil.set(key, value);
+        }
+        return redisUtil.get(key);
+
     }
 }
