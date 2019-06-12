@@ -25,11 +25,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
+       <!-- <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
 
 
         <dependency>
@@ -37,6 +37,7 @@
             <artifactId>demo-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
 
 
     </dependencies>

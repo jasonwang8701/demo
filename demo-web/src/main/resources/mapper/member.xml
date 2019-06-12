@@ -1,0 +1,16 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jason.wy.demodao.Dao.DAO.DemoDao">
+
+    <resultMap id="memberMap" type="com.jason.wy.demodao.Dao.DO.MemberDO">
+        <result column="model_code" property="modelCode"/>
+    </resultMap>
+    <!--    <select id="findAllUser" resultType="com.jason.wy.demodao.Dao.DO.MemberDO">
+            select id,model_code ,date_create from member ;
+        </select>-->
+
+    <select id="findAllUser" resultMap="memberMap">
+        select id,model_code ,date_create from member ;
+    </select>
+</mapper>

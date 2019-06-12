@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:job="http://www.dangdang.com/schema/ddframe/job"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd
+
+
+http://www.dangdang.com/schema/ddframe/job
+http://www.dangdang.com/schema/ddframe/job/job.xsd">
+    <!--
+
+        &lt;!&ndash;配置作业注册中心 &ndash;&gt;
+        <reg:zookeeper id="regCenter" server-lists="${regcenter.zookeeper.serverList}"
+                       namespace="${regcenter.zookeeper.namespace}"
+                       base-sleep-time-milliseconds="${regcenter.zookeeper.base.sleep.time.milliseconds}"
+                       max-sleep-time-milliseconds="${regcenter.zookeeper.max.sleep.time.milliseconds}"
+                       max-retries="${regcenter.zookeeper.max.retries}"/>
+    -->
+
+    <!--    &lt;!&ndash; Elastic-Job在数据库中的日志 &ndash;&gt;
+        <bean id="elasticJobLog" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+            <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://127.0.0.1:3306/elastic_job_log"/>
+            <property name="username" value="root"/>
+            <property name="password" value="!QAZ2wsx"/>
+        </bean>-->
+
+    <!-- 第一个Elastic-Job分片定时任务 -->
+    <job:simple id="mySimpleJob3" class="com.jason.wy.demoservice.job.MySimpleJob" registry-center-ref="regCenter"
+                cron="${simpleJob.cron}"
+                sharding-total-count="${simpleJob.shardingTotalCount}"
+                sharding-item-parameters="${simpleJob.shardingItemParameters}"
+                description="我的第一个简单作业" overwrite="true" disabled="true"/>
+    <!-- event-trace-rdb-data-source="dataSource"-->
+    <!-- job-exception-handler="com.test.cloudbill.elastic.jobs.CustomJobExceptionHandler"-->
+
+    <!-- 第一个Elastic-Job分片定时任务 -->
+    <job:simple id="mySimpleJob4" class="com.jason.wy.demoservice.job.MySimpleJob2" registry-center-ref="regCenter"
+                cron="${simpleJob.cron}"
+                sharding-total-count="${simpleJob.shardingTotalCount}"
+                sharding-item-parameters="${simpleJob.shardingItemParameters}"
+                description="我的第2个简单作业" overwrite="true" disabled="true"/>
+    <!-- event-trace-rdb-data-source="dataSource"-->
+    <!-- job-exception-handler="com.test.cloudbill.elastic.jobs.CustomJobExceptionHandler"-->
+</beans>

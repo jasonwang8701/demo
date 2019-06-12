@@ -1,4 +1,4 @@
-package com.jason.wy.democommon.utils;
+package com.jason.wy.demoservice.utils;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ public class RedisUtil {
 
 
     @Resource
-    RedisTemplate redisTemplate;
+    private RedisTemplate redisTemplate;
 
     /**
      * @param key
