@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+   <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+      <destination>localhost:8080</destination>
+      <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" />
+   </appender>
+   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder charset="UTF-8"> <!-- encoder 可以指定字符集，对于中文输出有意义 -->
+         <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+      </encoder>
+   </appender>
+
+
+   <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
+   <property name="TEST_FILE_PATH" value="/Users/yuanwang/log" />
+   <appender name="TEST-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+      <!-- 文件路径 -->
+      <!--<file>${TEST_FILE_PATH}</file>-->
+      <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+         <!-- 文件名称 -->
+         <fileNamePattern>${TEST_FILE_PATH}/info.%d{yyyy-MM-dd}.log</fileNamePattern>
+         <!-- 文件最大保存历史数量 -->
+         <MaxHistory>100</MaxHistory>
+      </rollingPolicy>
+
+      <layout class="ch.qos.logback.classic.PatternLayout">
+         <pattern>${PATTERN}</pattern>
+      </layout>
+   </appender>
+
+
+   <root level="INFO">
+      <appender-ref ref="LOGSTASH" />
+      <appender-ref ref="STDOUT" />
+      <appender-ref ref="TEST-FILE" />
+   </root>
+
+</configuration>

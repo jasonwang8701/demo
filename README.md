@@ -24,3 +24,9 @@ java -jar -Dserver.port=8080 boot.jar
 dubbo admin
 http://localhost:7070/
 
+fiddler:
+mono --arch=32 Fiddler.exe
+
+elk:
+logstash -f logstash-simple.conf --path.data=/Users/yuanwang/Downloads/logstash-7.1.1/path-data
+bin/kibana
