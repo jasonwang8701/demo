@@ -21,7 +21,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <demo.version>0.0.1-SNAPSHOT</demo.version>
-        <springboot.version>2.1.5.RELEASE</springboot.version>
+        <springboot.version>2.5.12</springboot.version>
     </properties>
     <modules>
         <module>demo-web</module>
